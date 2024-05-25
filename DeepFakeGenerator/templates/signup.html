@@ -1,0 +1,19 @@
+<!---------------------------- Signup popup starting --------------------------------->
+<div id="SignUpPopup" class="popup">
+    <span class="close-button announce-close">&times;</span>
+    <div class="popup-content LoginPopup-content">
+        <div class="popup-image">
+            <img src="{%static 'auth.webp' %}" alt="Astronaut with balloons">
+        </div>
+        <div class="popup-text">
+            <h1>Hi there!</h1>
+            <p>Welcome to DeepFakeNet, so happy to see you!</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign Up</button>
+            </form>
+</div>
+</div>
+</div>
+<!---------------------------- Signup popup starting --------------------------------->

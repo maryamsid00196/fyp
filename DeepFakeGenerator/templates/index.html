@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Face Swap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+   <style>body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #010c1e;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+/*....................... popup Styling start------------------------------- */
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.popup-content {
+    background-color: #fff;
+    /* max-width: 1080px; */
+    max-width: 65%;
+    height: 90%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+    line-height: 18px;
+    /* width: calc(100% - 40px); */
+}
+
+.popup h1
+{
+    font-size: 65px;
+}
+.popup p
+{
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.popup-image {
+    flex: 1;
+
+}
+
+.popup-image img {
+    justify-content:left;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-text {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.popup-text h1, p {
+    margin-top: 0;
+    color: #000;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-button {
+    padding: 10px;
+    margin: 5px 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.login-button i {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    
+}
+.login-button p {
+    margin: 3px 0px 0px 0px;
+    padding: 0;
+    font-size: 16px;
+    color: #2C2A2A;
+}
+
+.login-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    background-color: #58595B;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .3);
+    color: #fff;
+    opacity: 1;
+    height: 30px;
+    width: 30px;
+    z-index: 200;
+    padding: 5px;
+    right: 16%;
+    top: 15px;
+}
+.close-button:hover
+{
+    background-color: #BBBDC2;
+}
+
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+.login-button.google img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.login-button.facebook img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.login-button.apple img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.orUseEmail
+{
+    text-decoration: none;
+    margin: 5px 0px;
+    color: #092949;
+}
+.TermsOfUse
+{
+    font-size: 15px;
+    color: #2C2A2A;
+    padding: 3px 20px;
+    margin: 8px 80px;
+}
+.TermsOfUse a
+{
+    font-size: 15px;
+    color:#5B80B6;
+    text-decoration: none;
+}
+/*....................... popup Styling end------------------------------- */
+
+
+/* ....................... login popup Styling start------------------------------- */
+.popup-content form {
+    display: flex;
+    flex-direction: column;
+ }
+
+.loginFormClass label {
+    margin: 10px 0px;
+    color:#000;
+    align-items: left;
+    justify-content: left;
+}
+.loginFormClass
+{
+margin: 0px 70px;
+}
+.popup-content input[type="email"], .popup-content input[type="password"] 
+{
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-content input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    
+}
+.randomTemp
+{
+    color: #5B80B6;
+    text-decoration: none;
+}
+.ForgetPasslink
+        {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .ForgetPasslink a {
+            color: #5B80B6;
+            text-decoration: none;
+        }
+
+        .ForgetPasslink a:hover {
+            text-decoration: underline;
+        }
+        .LoginSubmit
+        {
+            color: #fff;
+            background-color: #000;
+            border-radius: 10px;
+            height: 40px;
+            margin-top: 10px;
+        }
+/*....................... Login popup Styling end------------------------------- */
+
+
+/*....................... Signup popup Styling start------------------------------- */
+
+.SignUpForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 70px;
+}
+
+.SignUpForm label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+.SignUpForm input[type="email"], .SignUpForm input[type="password"], .SignUpForm select 
+{
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.SignUpForm input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.SignUpForm .link {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.SignUpForm .link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.SignUpForm .link a:hover {
+    text-decoration: underline;
+}
+
+.SignUpForm .newsletter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.SignUpForm .newsletter input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+
+/*....................... Signup popup Styling end------------------------------- */
+
+
+/*....................... index Styling start------------------------------- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 70px;
+    /* background-color: #2d2d2d; */
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+.WebsiteName
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin: 4px;
+    font-size: 19px;
+}
+
+nav ul li a i {
+    margin: 0px 8px;
+}
+
+
+main {  
+    padding: 5px 40px;
+    margin: 0px 80px;
+}
+
+.main-wrapper {
+    background-color: #06193c;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.main-wrapper h1 {
+    margin-top: 0;
+    font-size: 36px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    text-align: left;
+    color: #f0f0f0;
+    padding: 20px 5px;
+}
+.main-wrapper p {
+    font-size: 18px;
+    margin: 5px 20px 40px 20px;
+    line-height: 1.5;
+    color: #f0f0f0;
+    text-align: left;
+}
+
+.upload-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-box {
+    border: 2px dotted #444;
+    padding: 40px;
+    margin: 0 20px;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ProcessingWrapper
+{
+    justify-content: center;
+}
+.result-box
+{
+    border: 2px dotted #444;
+    padding: 40px;
+    width: 400px;
+    height: 300px;
+    margin: 15px auto;
+}
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.swap-icon {
+    font-size: 48px;
+    margin: 0 20px;
+}
+
+
+/*....................... index Styling end------------------------------- */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 15px;
+    gap: 10px;
+}
+.faceswapButton, .FSGanbutton
+{
+    display: flex;
+    align-items: center;
+    background-color: #010c1e;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.faceswapButton:hover, .FSGanbutton:hover
+{
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: #fff;
+    color: #010c1e;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 400px;
+    height: 300px;
+    border: 2px solid #ccc;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.container img, .container video {
+    max-width: 100%;
+    max-height: 100%;
+}
+.hidden {
+    display: none;
+}
+
+
+input[type="file"]{
+    display: none;
+  }
+  label{
+    cursor: pointer;
+    color: #ccc;
+    border: 1px solid #BBBDC2;
+    border-radius: 20px;
+    width: 80%;
+    padding: 8px;
+    background-color: #0f1d3a;
+}</style>
+</head>
+<body>
+    {% load static %}
+    <header>
+        <div class="logo">
+            <img src="{%static 'logo.png' %}" alt="Logo"><a href="./index.html"><h3 class="WebsiteName">DeepFakeNet</h3></a>         
+        </div>
+        <nav>
+            <ul>
+                <li ><a href="#" id="login-button"><i class="fas fa-user"></i>Sign up / Log in</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i></a></li>
+                <li><a href="#"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="main-wrapper">
+            <h1>AI Face Swap online</h1>
+            <p>High quality AI Face Swap online, you can experience the ultimate Face Swap tool, revolutionizing the way you make fun with your photos! With our cutting-edge technology, seamlessly swap faces with friends, family, or even your favorite celebrities in just a few clicks. Create hilarious and share-worthy moments effortlessly, all while unleashing your creativity. Say goodbye to boring selfies and hello to endless fun with our intuitive Face Swap tool!</p>
+            <div class="upload-section">
+                <div class="upload-box">
+                    <div class="upload-icon container">
+                        <img id="preview-image" class="hidden"/>
+                        <video id="preview-video" class="hidden" controls></video>
+                    </div>
+                    <label for="inputTag">
+                        Upload Face
+                        <input type="file" id="inputTag"/>
+                    </label>
+                </div>
+                <div class="swap-icon">
+                    <img src="{%static 'swap.svg' %}" alt="Swap Icon">
+                </div>
+                <div class="upload-box">
+                        <div class="upload-icon container">
+                            <img id="preview-image" class="hidden" />
+                            <video id="preview-video" class="hidden" controls></video>
+                        </div>
+                        <label for="inputTag">
+                            Upload Target
+                            <input id="inputTag" type="file"/>
+                        </label>
+                </div>
+            </div>
+            <div class="ProcessingWrapper">
+                <div class="button-container">
+                    <button class="faceswapButton" onclick()="#">Run Face Swap</a>
+                    <button class="FSGanbutton" onclick()="#">Run FSGAN</a>
+                </div>
+                <div class="result-box">
+                    <div class="upload-icon container">
+                      
+                    </div>
+               </div>
+            </div>
+            <br><br>
+        </div>
+    </main>
+    
+<!---------------------------- popup starting --------------------------------->
+
+    <div id="popup" class="popup">
+        <span class="close-button announce-close">&times;</span>
+        <div class="popup-content">
+                  <div class="popup-image">
+                  <img src="{%static 'auth.webp' %}" alt="Astronaut with balloons">
+              </div>
+              <div class="popup-text">
+                <h1>Hi there!</h1>
+                <p>Welcome to DeepFakeNet, so happy to see you!</p>
+                <div class="login-buttons">
+                    <button class="login-button google">
+                        <img src="{%static '189824.webp' %}" alt="Google Icon">
+                        <p>Continue with Google</p>
+                    </button>
+                    <button class="login-button facebook">
+                      <img src="{%static 'facebook.svg' %}" alt="Google Icon">
+                       <p>Continue with Facebook</p>
+                    </button>
+                    <button class="login-button apple">
+                        <img src="{%static 'apple-logo.svg' %}" alt="Apple Icon">
+                      <p>Continue with Apple</p>
+                    </button>
+                </div>
+                <a href="#" id="orUseEmail" class="orUseEmail">Or use email</a>
+                <p class="TermsOfUse">By continuing, you agree to our <a href="#">Terms Of Use</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
+          </div>
+      </div>
+
+<!---------------------------- popup ending --------------------------------->
+
+    
+<!---------------------------- Login popup starting --------------------------------->
+
+<div id="LoginPopup" class="popup">
+    <span class="close-button announce-close">&times;</span>
+    <div class="popup-content LoginPopup-content">
+        <div class="popup-image">
+            <img src="{%static 'auth.webp' %}" alt="Astronaut with balloons">
+        </div>
+        <div class="popup-text">
+            <h1>Hi there!</h1>
+            <p>Welcome to DeepFakeNet, so happy to see you!</p>
+            <p>Not a member? <a href="#" id="JumpToSignUp" class="randomTemp">Sign Up!</a></p>
+               
+    <form id="loginForm" class="loginFormClass">
+        <label for="emailInput">Email</label>
+        <input type="email" id="emailInput" name="email" placeholder="Email address">
+        
+        <label for="passwordInput">Password</label>
+        <input type="password" id="passwordInput" name="password" placeholder="Enter password">
+        
+        <div>
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+        </div>
+
+        <button class="LoginSubmit" type="submit">Login</button>
+    </form>
+    <div class="ForgetPasslink">
+        <a href="#">Forgot Password?</a>
+    </div>
+</div>
+</div>
+</div>
+<!---------------------------- Login popup ending --------------------------------->
+
+<!---------------------------- Signup popup starting --------------------------------->
+<div id="SignUpPopup" class="popup">
+    <span class="close-button announce-close">&times;</span>
+    <div class="popup-content LoginPopup-content">
+        <div class="popup-image">
+            <img src="{%static 'auth.webp' %}" alt="Astronaut with balloons">
+        </div>
+        <div class="popup-text">
+            <h1>Hi there!</h1>
+            <p>Welcome to DeepFakeNet, so happy to see you!</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign Up</button>
+            </form>
+            
+                <input type="submit" value="Sign Up">
+            </form>
+</div>
+</div>
+</div>
+<!---------------------------- Signup popup starting --------------------------------->
+<script>
+    /*....................... popup JS start------------------------------- */
+
+document.addEventListener('click', function(event) {
+    var popup = document.getElementById("popup");
+    if (event.target.matches('.close-button')) {
+        popup.classList.remove("show");
+    }
+    if (event.target.matches('#login-button')) {
+        popup.classList.toggle("show");
+    }
+});
+
+/*....................... popup JS ends------------------------------- */
+
+/*....................... Login popup JS starts------------------------------- */
+
+document.addEventListener('click', function(event) {
+    var popup = document.getElementById("LoginPopup");
+    if (event.target.matches('.close-button')) {
+        popup.classList.remove("show");
+    }
+    if (event.target.matches('#orUseEmail')) {
+        popup.classList.toggle("show");
+    }
+});
+
+/*....................... login popup JS ends------------------------------- */
+
+/*....................... Signup popup JS starts------------------------------- */
+
+document.addEventListener('click', function(event) {
+    var popup = document.getElementById("SignUpPopup");
+    if (event.target.matches('.close-button')) {
+        popup.classList.remove("show");
+    }
+    if (event.target.matches('#JumpToSignUp')) {
+        popup.classList.toggle("show");
+    }
+});
+
+/*....................... Signup popup JS ends------------------------------- */
+
+/*....................... index JS start------------------------------- */
+
+// Placeholder for future JavaScript functionality
+document.querySelectorAll('.upload-button').forEach(button => {
+    button.addEventListener('click', () => {
+        alert('Upload functionality not implemented yet.');
+    });
+});
+
+
+/*....................... index JS start------------------------------- */
+
+/*....................... for uploading images------------------------------- */
+document.getElementById('inputTag').addEventListener('change', function(event) 
+{
+    const file = event.target.files[0];
+    const imgElement = document.getElementById('preview-image');
+    const videoElement = document.getElementById('preview-video');
+    
+    if (!file) return;
+
+    const url = URL.createObjectURL(file);
+
+    if (file.type.startsWith('image/')) {
+        imgElement.src = url;
+        imgElement.classList.remove('hidden');
+        videoElement.classList.add('hidden');
+    } else if (file.type.startsWith('video/')) {
+        videoElement.src = url;
+        videoElement.classList.remove('hidden');
+        imgElement.classList.add('hidden');
+    }
+});
+
+
+
+</script>
+</body>
+</html>

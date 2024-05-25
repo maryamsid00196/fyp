@@ -1,0 +1,500 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #010c1e;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+/*....................... popup Styling start------------------------------- */
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;
+}
+
+.popup-content {
+    background-color: #fff;
+    /* max-width: 1080px; */
+    max-width: 65%;
+    height: 90%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+    line-height: 18px;
+    /* width: calc(100% - 40px); */
+}
+
+.popup h1
+{
+    font-size: 65px;
+}
+.popup p
+{
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.popup-image {
+    flex: 1;
+
+}
+
+.popup-image img {
+    justify-content:left;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-text {
+    flex: 1;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.popup-text h1, p {
+    margin-top: 0;
+    color: #000;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-button {
+    padding: 10px;
+    margin: 5px 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.login-button i {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    
+}
+.login-button p {
+    margin: 3px 0px 0px 0px;
+    padding: 0;
+    font-size: 16px;
+    color: #2C2A2A;
+}
+
+.login-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    background-color: #58595B;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .3);
+    color: #fff;
+    opacity: 1;
+    height: 30px;
+    width: 30px;
+    z-index: 200;
+    padding: 5px;
+    right: 16%;
+    top: 15px;
+}
+.close-button:hover
+{
+    background-color: #BBBDC2;
+}
+
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+.login-button.google img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.login-button.facebook img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.login-button.apple img
+{ 
+    width: 20px;
+    height: 20px;
+    padding: 5px 10px;
+}
+.orUseEmail
+{
+    text-decoration: none;
+    margin: 5px 0px;
+    color: #092949;
+}
+.TermsOfUse
+{
+    font-size: 15px;
+    color: #2C2A2A;
+    padding: 3px 20px;
+    margin: 8px 80px;
+}
+.TermsOfUse a
+{
+    font-size: 15px;
+    color:#5B80B6;
+    text-decoration: none;
+}
+/*....................... popup Styling end------------------------------- */
+
+
+/* ....................... login popup Styling start------------------------------- */
+.popup-content form {
+    display: flex;
+    flex-direction: column;
+ }
+
+.loginFormClass label {
+    margin: 10px 0px;
+    color:#000;
+    align-items: left;
+    justify-content: left;
+}
+.loginFormClass
+{
+margin: 0px 70px;
+}
+.popup-content input[type="email"], .popup-content input[type="password"] 
+{
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-content input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    
+}
+.randomTemp
+{
+    color: #5B80B6;
+    text-decoration: none;
+}
+.ForgetPasslink
+        {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .ForgetPasslink a {
+            color: #5B80B6;
+            text-decoration: none;
+        }
+
+        .ForgetPasslink a:hover {
+            text-decoration: underline;
+        }
+        .LoginSubmit
+        {
+            color: #fff;
+            background-color: #000;
+            border-radius: 10px;
+            height: 40px;
+            margin-top: 10px;
+        }
+/*....................... Login popup Styling end------------------------------- */
+
+
+/*....................... Signup popup Styling start------------------------------- */
+
+.SignUpForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 70px;
+}
+
+.SignUpForm label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+}
+
+.SignUpForm input[type="email"], .SignUpForm input[type="password"], .SignUpForm select 
+{
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.SignUpForm input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.SignUpForm .link {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.SignUpForm .link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.SignUpForm .link a:hover {
+    text-decoration: underline;
+}
+
+.SignUpForm .newsletter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.SignUpForm .newsletter input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+
+/*....................... Signup popup Styling end------------------------------- */
+
+
+/*....................... index Styling start------------------------------- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 70px;
+    /* background-color: #2d2d2d; */
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+.WebsiteName
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #f0f0f0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin: 4px;
+    font-size: 19px;
+}
+
+nav ul li a i {
+    margin: 0px 8px;
+}
+
+
+main {  
+    padding: 5px 40px;
+    margin: 0px 80px;
+}
+
+.main-wrapper {
+    background-color: #06193c;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.main-wrapper h1 {
+    margin-top: 0;
+    font-size: 36px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    text-align: left;
+    color: #f0f0f0;
+    padding: 20px 5px;
+}
+.main-wrapper p {
+    font-size: 18px;
+    margin: 5px 20px 40px 20px;
+    line-height: 1.5;
+    color: #f0f0f0;
+    text-align: left;
+}
+
+.upload-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-box {
+    border: 2px dotted #444;
+    padding: 40px;
+    margin: 0 20px;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ProcessingWrapper
+{
+    justify-content: center;
+}
+.result-box
+{
+    border: 2px dotted #444;
+    padding: 40px;
+    width: 400px;
+    height: 300px;
+    margin: 15px auto;
+}
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.swap-icon {
+    font-size: 48px;
+    margin: 0 20px;
+}
+
+
+/*....................... index Styling end------------------------------- */
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 15px;
+    gap: 10px;
+}
+.faceswapButton, .FSGanbutton
+{
+    display: flex;
+    align-items: center;
+    background-color: #010c1e;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.faceswapButton:hover, .FSGanbutton:hover
+{
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: #fff;
+    color: #010c1e;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 400px;
+    height: 300px;
+    border: 2px solid #ccc;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.container img, .container video {
+    max-width: 100%;
+    max-height: 100%;
+}
+.hidden {
+    display: none;
+}
+
+
+input[type="file"]{
+    display: none;
+  }
+  label{
+    cursor: pointer;
+    color: #ccc;
+    border: 1px solid #BBBDC2;
+    border-radius: 20px;
+    width: 80%;
+    padding: 8px;
+    background-color: #0f1d3a;
+}
